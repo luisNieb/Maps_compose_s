@@ -22,7 +22,6 @@ import com.google.maps.android.compose.rememberMarkerState
 @Composable
 fun MapsView(){
 
-
     val newYork= LatLng(40.758896,-73.985130)
     //agregar un marcador
     val markerstate= rememberMarkerState(position = newYork)
@@ -59,6 +58,4 @@ fun MapsView(){
         }
 
     }
-
-
 }
