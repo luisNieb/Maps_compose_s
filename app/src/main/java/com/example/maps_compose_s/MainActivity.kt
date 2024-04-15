@@ -24,12 +24,10 @@ class MainActivity : ComponentActivity() {
                Surface(modifier = Modifier.fillMaxSize()) {
                    MapsView()
                }
-
                 }
             }
         }
     }
-
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
