@@ -6,15 +6,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.maps_compose_s.viewModel.SearchViewModel
+
 import com.example.maps_compose_s.views.HomeView
 import com.example.maps_compose_s.views.MapSearchView
-
-
+import viewModel.SearchViewModel
 
 
 @Composable
-fun NavManager(serchVM:SearchViewModel){
+fun NavManager(serchVM: SearchViewModel){
     val navController= rememberNavController()
     NavHost(navController = navController, startDestination = "Home" ){
         composable("Home"){

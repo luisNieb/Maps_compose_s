@@ -13,15 +13,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-
-import com.example.maps_compose_s.navigation.NavManager
 import com.example.maps_compose_s.ui.theme.Maps_compose_sTheme
-import com.example.maps_compose_s.viewModel.SearchViewModel
 import com.example.maps_compose_s.views.HomeView
 import com.example.maps_compose_s.views.MapsView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationServices
+import navigation.NavManager
+import viewModel.SearchViewModel
 
 class MainActivity : ComponentActivity() {
 
