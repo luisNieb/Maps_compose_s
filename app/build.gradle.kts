@@ -59,6 +59,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+
+
     //mapas
     implementation("com.google.maps.android:maps-compose:2.11.2")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
@@ -66,6 +69,20 @@ dependencies {
     implementation("com.google.android.libraries.places:places:3.4.0")
 
 
+     //localizacion
+      implementation("com.google.android.gms:play-services-location:21.2.0")
+
+
+     //NAVIGATION
+     implementation("androidx.navigation:navigation-compose:2.7.7")
+
+    //Retrofit
+    //retrofit
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    implementation(libs.accompanist.permissions)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
