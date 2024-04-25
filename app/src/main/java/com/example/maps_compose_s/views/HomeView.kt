@@ -65,7 +65,7 @@ fun HomeView(navController: NavController , serchVm : SearchViewModel){
     serchVm.dibujarLinea=false
 
 
-    serchVm.LocalizacionActual(LocalContext.current)
+   // serchVm.LocalizacionActual(LocalContext.current)
     if(serchVm.latUser!=0.0 && serchVm.longUser !=0.0){
         var local= "${serchVm.latUser} ${serchVm.longUser}"
         serchVm.getLocation(local)
@@ -79,7 +79,8 @@ fun HomeView(navController: NavController , serchVm : SearchViewModel){
         Column(
             modifier = Modifier
                 .padding(pad)
-                .fillMaxWidth(),
+                ,
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
             ) {
             var search  by remember { mutableStateOf(serchVm.addreess) }
@@ -88,10 +89,22 @@ fun HomeView(navController: NavController , serchVm : SearchViewModel){
                 onValueChange ={ search=it} ,
                 label = { Text(text = "Buscar")}
             )
-            OutlinedButton(onClick = { if(search !="") serchVm.getLocation(search) }) {
-                Text(text = "Buscar")
-                
+            Row (horizontalArrangement = Arrangement.SpaceBetween){
+                OutlinedButton(onClick = { if(search !="") serchVm.getLocation(search) },
+                        modifier = Modifier.padding(15.dp)) {
+                    Text(text = "Buscar")
+
+                }
+                LocationPermissions(
+                    text = "TU LOCALIZACION",
+                    rationale = "We need access to your location for some awesome features!",
+                    locationState = locationPermissionState,
+                    serchVm
+                )
             }
+
+
+
             if(serchVm.show){
                 Card(
                     modifier = Modifier
@@ -137,6 +150,8 @@ fun HomeView(navController: NavController , serchVm : SearchViewModel){
                             Text(text = "Guardar tu Direccion")
                         }
 
+
+
                     }
 
                     
@@ -167,15 +182,6 @@ fun HomeView(navController: NavController , serchVm : SearchViewModel){
 
                 }
             }
-
-            LocationPermissions(
-                text = "TU LOCALIZACION",
-                rationale = "We need access to your location for some awesome features!",
-                locationState = locationPermissionState,
-                serchVm
-            )
-
-
 
 
         }

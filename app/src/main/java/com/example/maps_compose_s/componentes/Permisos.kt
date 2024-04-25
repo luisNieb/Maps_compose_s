@@ -85,7 +85,7 @@ fun LocationPermissions(text: String, rationale: String, locationState: Multiple
             viewModel
         )
     }
-    Box(modifier = Modifier.fillMaxSize().padding(15.dp), contentAlignment = Alignment.BottomCenter) {
+    Box(modifier = Modifier.padding(15.dp), contentAlignment = Alignment.BottomCenter) {
 
 
         PermissionRequestButton(isGranted = locationState.allPermissionsGranted , title = text ,viewModel) {
@@ -112,9 +112,7 @@ fun PermissionRequestButton(isGranted: Boolean, title: String, viewModel: Search
         val context = LocalContext.current
 
             Column(
-                modifier = Modifier.fillMaxSize().padding(16.dp),
-                verticalArrangement = Arrangement.SpaceBetween,
-                horizontalAlignment =Alignment.CenterHorizontally
+
             ) {
                 fusedLocationClient.lastLocation
                     .addOnSuccessListener { location ->

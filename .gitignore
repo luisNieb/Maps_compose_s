@@ -13,5 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
-app/src/main/java/com/example/maps_compose_s/constantes/Permisos.kt
+app/src/main/java/com/example/maps_compose_s/constantes/Constantes.kt
 
