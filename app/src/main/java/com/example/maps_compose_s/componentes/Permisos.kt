@@ -104,7 +104,6 @@ fun LocationPermissions(text: String, rationale: String, locationState: Multiple
 @Composable
 fun PermissionRequestButton(isGranted: Boolean, title: String, viewModel: SearchViewModel, onClick: () -> Unit) {
 
-
     if (isGranted) {
     Log.e("ISGRANTED",viewModel.lationPermision.toString())
         val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(LocalContext.current)
@@ -122,7 +121,6 @@ fun PermissionRequestButton(isGranted: Boolean, title: String, viewModel: Search
                             // Got last known location. In some rare situations this can be null.
                             viewModel.latUser = location.latitude
                             viewModel.longUser = location.longitude
-
 
                         }
                     }
