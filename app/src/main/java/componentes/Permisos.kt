@@ -1,4 +1,4 @@
-package com.example.maps_compose_s.componentes
+package componentes
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -35,6 +35,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastCbrt
 import androidx.core.app.ActivityCompat
+
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.PermissionState
@@ -42,6 +43,7 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import viewModel.SearchViewModel
+
 
 /**
  * Simple screen that manages the location permission state
@@ -60,6 +62,7 @@ fun LocationPermissions(text: String, rationale: String, locationState: Permissi
         viewModel
     )
 }
+
 
 /**
  * Simple screen that manages the location permission state
@@ -87,6 +90,8 @@ fun LocationPermissions(text: String, rationale: String, locationState: Multiple
     Box(modifier = Modifier.fillMaxSize().padding(15.dp), contentAlignment = Alignment.BottomCenter) {
 
 
+
+
         PermissionRequestButton(isGranted = locationState.allPermissionsGranted , title = text ,viewModel) {
             if (locationState.shouldShowRationale) {
                 showRationale = true
@@ -97,6 +102,7 @@ fun LocationPermissions(text: String, rationale: String, locationState: Multiple
     }
 }
 
+
 /**
  * A button that shows the title or the request permission action.
  */
@@ -104,63 +110,80 @@ fun LocationPermissions(text: String, rationale: String, locationState: Multiple
 @Composable
 fun PermissionRequestButton(isGranted: Boolean, title: String, viewModel: SearchViewModel, onClick: () -> Unit) {
 
+
+
+
     if (isGranted) {
-    Log.e("ISGRANTED",viewModel.lationPermision.toString())
+        Log.e("ISGRANTED",viewModel.lationPermision.toString())
         val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(LocalContext.current)
+
 
         val context = LocalContext.current
 
-            Column(
-                modifier = Modifier.fillMaxSize().padding(16.dp),
-                verticalArrangement = Arrangement.SpaceBetween,
-                horizontalAlignment =Alignment.CenterHorizontally
-            ) {
-                fusedLocationClient.lastLocation
-                    .addOnSuccessListener { location ->
-                        if (location != null) {
-                            // Got last known location. In some rare situations this can be null.
-                            viewModel.latUser = location.latitude
-                            viewModel.longUser = location.longitude
 
-                        }
+        Column(
+            modifier = Modifier.fillMaxSize().padding(16.dp),
+            verticalArrangement = Arrangement.SpaceBetween,
+            horizontalAlignment =Alignment.CenterHorizontally
+        ) {
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location ->
+                    if (location != null) {
+                        // Got last known location. In some rare situations this can be null.
+                        viewModel.latUser = location.latitude
+                        viewModel.longUser = location.longitude
+
+
+
+
                     }
-            }
+                }
+        }
 
-        } else {
-            Button(onClick = onClick) {
-                Text("Acceder a ${title} ")
-            }
+
+    } else {
+        Button(onClick = onClick) {
+            Text("Acceder a ${title} ")
         }
     }
+}
 
 
-    /**
-     * Simple AlertDialog that displays the given rational state
-     */
-    @Composable
-    fun PermissionRationaleDialog(rationaleState: RationaleState,viewModel: SearchViewModel) {
-        AlertDialog(onDismissRequest = {
-            rationaleState.onRationaleReply(false) }, title = {
-            Text(text = rationaleState.title)
-        }, text = {
-            Text(text = rationaleState.rationale)
-        }, confirmButton = {
-            TextButton(onClick = {
 
-                rationaleState.onRationaleReply(true)
 
-            }) {
-                Text("Continue")
-            }
-        }, dismissButton = {
-            TextButton(onClick = {
+/**
+ * Simple AlertDialog that displays the given rational state
+ */
+@Composable
+fun PermissionRationaleDialog(rationaleState: RationaleState,viewModel: SearchViewModel) {
+    AlertDialog(onDismissRequest = {
+        rationaleState.onRationaleReply(false) }, title = {
+        Text(text = rationaleState.title)
+    }, text = {
+        Text(text = rationaleState.rationale)
+    }, confirmButton = {
+        TextButton(onClick = {
 
-                rationaleState.onRationaleReply(false)
-            }) {
-                Text("Dismiss")
-            }
-        })
-    }
+
+            rationaleState.onRationaleReply(true)
+
+
+        }) {
+            Text("Continue")
+        }
+    }, dismissButton = {
+        TextButton(onClick = {
+
+
+            rationaleState.onRationaleReply(false)
+        }) {
+            Text("Dismiss")
+        }
+    })
+}
+
+
+
 
 
 
@@ -169,4 +192,3 @@ data class RationaleState(
     val rationale: String,
     val onRationaleReply: (proceed: Boolean) -> Unit,
 )
-
